@@ -16,37 +16,49 @@
         */
         class Rect {
             constructor(width, height) {
-                this.width = width;
-                this.height = height;
+                if (width <= 0) {
+                    throw new Error("Значение width не может быть равное или меньше 0");
+                }
+                if (width === undefined) {
+                    throw new Error("Значение width не может быть отсутствующим");
+                }
+                if (height <= 0) {
+                    throw new Error("Значение height не может быть равное или меньше 0");
+                }
+                if (height === undefined) {
+                    throw new Error("Значение height не может быть отсутствующим");
+                }
+                this._width = width;
+                this._height = height;
             }
 
             get width() {
-                if (this._width === undefined) {
-                    this._width = 0;
-                }
+                // if (this._width === undefined) {
+                //     this._width = 0;
+                // }
 
                 return this._width;
             }
 
             set width(value) {
-                if (value < 0) {
-                    throw new Error("Значение для width не может быть меньше 0");
+                if (value <= 0) {
+                    throw new Error("Значение для width не может быть равное или меньше 0");
                 } else {
                     this._width = value;
                 }
             }
 
             get height() {
-                if (this._height === undefined) {
-                    this._height = 0;
-                }
+                // if (this._height === undefined) {
+                //     this._height = 0;
+                // }
 
                 return this._height;
             }
 
             set height(value) {
-                if (value < 0) {
-                    throw new Error("Значение для height не может быть меньше 0");
+                if (value <= 0) {
+                    throw new Error("Значение для height не может быть равное или меньше 0");
                 } else {
                     this._height = value;
                 }
@@ -57,14 +69,21 @@
             }
         }
 
-        let r1 = new Rect(10, 20);
+        try {
+            let r1 = new Rect(10, 20);
+            console.log("area " + r1.area);
 
-        r1.height = -10; // ошибка
-        r1.width = 30;
+            // let r2 = new Rect(5);
 
-        console.log("width " + r1.width);
-        console.log("height " + r1.height);
-        console.log("area " + r1.area);
+            r1.height = -10; // ошибка
+            r1.width = 30;
+
+            console.log("width " + r1.width);
+            console.log("height " + r1.height);
+            console.log("area " + r1.area);
+        } catch (error) {
+            console.log(error.message);
+        }
     </script>
 </body>
 
