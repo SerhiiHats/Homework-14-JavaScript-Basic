@@ -16,11 +16,20 @@
         */
 
         function sum(a, b) {
+            if (a === undefined) {
+                throw new Error("отсутствует параметр 'a' дальнейшее выполнение прервано");
+            }
+            if (b === undefined) {
+                throw new Error("отсутствует параметр 'b' дальнейшее выполнение прервано");
+            }
             return a + b;
         }
 
         try {
             let result = sum(1, 5);
+            console.log(result);
+
+            result = sum(0, 5);
             console.log(result);
 
             result = sum(10);
